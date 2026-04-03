@@ -30,7 +30,7 @@ class _SplashscreenState extends State<Splashscreen> {
 
   void navigate() {
     Future.delayed(Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, AppRoutes.home);
+      Navigator.pushReplacementNamed(context, AppRoutes.onboarding );
     });
   }
 }

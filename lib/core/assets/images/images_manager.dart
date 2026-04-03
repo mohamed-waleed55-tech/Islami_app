@@ -16,5 +16,12 @@ abstract final class ImagesManager {
   static const String mohamed = "$base/mohamed.png";
   static const String hadith_bg = "$base/hadith_bg.png";
   static const String bottom_decoration = "$base/img_bottom_decoration.png";
-  static const String sura_decoration = "$base/sura_decoration.png";
+  static const String onboard1 = "$base/onboard1.png";
+  static const String onboard2 = "$base/onboard2.png";
+  static const String onboard3 = "$base/onboard3.png";
+  static const String onboard4 = "$base/onboard4.png";
+  static const String onboard5 = "$base/onboard5.png";
+  static const String sibha = "$base/sibha.png";
+  static const String sibha_bg = "$base/sibha_bg.png";
+  static const String sibha_end = "$base/sibha_end.png";
 }

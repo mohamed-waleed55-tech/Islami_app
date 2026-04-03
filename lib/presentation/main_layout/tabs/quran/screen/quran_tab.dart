@@ -14,7 +14,7 @@ class QuranTab extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration:const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(ImagesManager.quran_bg),
             fit: BoxFit.cover,
@@ -56,7 +56,7 @@ Widget buildRecentSura() {
       itemCount: 6,
       itemBuilder: (_, index) => Padding(
         padding: const EdgeInsets.only(right: 10),
-        child: MostRecentItem(),
+        child: const MostRecentItem(),
       ),
     ),
   );
@@ -67,7 +67,7 @@ Widget buildSurasList() {
     shrinkWrap: true,
     physics: NeverScrollableScrollPhysics(),
     itemCount: suraList.length,
-    itemBuilder: (_, index) => SuraListItem(sura: suraList[index]),
+    itemBuilder: (_, index) =>SuraListItem(sura: suraList[index]),
     separatorBuilder: (_, _) => Divider(
       endIndent: 64,
       indent: 64,
@@ -100,7 +100,7 @@ Widget buildTextField() {
 
         prefixIcon: Padding(
           padding: const EdgeInsets.all(12),
-          child: ImageIcon(
+          child: const ImageIcon(
             AssetImage(ImagesManager.quran),
             color: ColorsManager.gold,
           ),

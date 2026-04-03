@@ -15,7 +15,7 @@ class _HadithTabState extends State<HadithTab> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    precacheImage(AssetImage(ImagesManager.mohamed), context);
+    precacheImage(const AssetImage(ImagesManager.mohamed), context);
   }
   @override
   Widget build(BuildContext context) {
