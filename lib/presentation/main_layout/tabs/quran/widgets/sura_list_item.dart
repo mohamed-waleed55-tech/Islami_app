@@ -41,7 +41,6 @@ class SuraListItem extends StatelessWidget {
 
             const SizedBox(width: 20),
 
-            // الاسم الإنجليزي وعدد الآيات
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
