@@ -22,8 +22,10 @@ class AppTheme {
     appBarTheme: AppBarThemeData(
       toolbarHeight: 30,
       backgroundColor: ColorsManager.black,
-        iconTheme: IconThemeData(
-          color: ColorsManager.gold
+      iconTheme: IconThemeData(
+
+          color: ColorsManager.gold,
+              size: 30
         ),
       titleTextStyle: TextStyle(
 

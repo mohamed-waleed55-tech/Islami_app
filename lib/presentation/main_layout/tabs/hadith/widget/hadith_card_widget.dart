@@ -30,33 +30,28 @@ class _HadithCardWidgetState extends State<HadithCardWidget> {
       onTap: hadith == null
           ? null
           : () {
-        Navigator.pushNamed(
-          context,
-          AppRoutes.hadithDetails,
-          arguments: hadith,
-        );
-      },
+              Navigator.pushNamed(
+                context,
+                AppRoutes.hadithDetails,
+                arguments: hadith,
+              );
+            },
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         elevation: 8,
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
         child: Container(
           padding: EdgeInsets.all(16),
           decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(ImagesManager.hadith_bg),
-              fit: BoxFit.cover,
-            ),
             borderRadius: BorderRadius.circular(16),
             color: ColorsManager.gold,
           ),
 
           child: hadith == null
-              ? Center(child: CircularProgressIndicator())
+              ? Center(child: const CircularProgressIndicator())
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    /// 🔹 Title
                     SizedBox(
                       height: 60,
                       child: Stack(
@@ -79,7 +74,7 @@ class _HadithCardWidgetState extends State<HadithCardWidget> {
                           ),
                           Text(
                             hadith!.title,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: ColorsManager.black,
                               fontSize: 24,
                               fontFamily: "Amiri",
@@ -90,8 +85,8 @@ class _HadithCardWidgetState extends State<HadithCardWidget> {
                       ),
                     ),
 
-                    SizedBox(height: 10),
-                    Divider(color: ColorsManager.black),
+                    const SizedBox(height: 10),
+                    const Divider(color: ColorsManager.black),
 
                     /// 🔹 Content
                     Expanded(
@@ -99,11 +94,11 @@ class _HadithCardWidgetState extends State<HadithCardWidget> {
                         child: Text(
                           hadith!.content,
                           textAlign: TextAlign.end,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontFamily: "Amiri",
                             color: ColorsManager.black,
                             fontSize: 18,
-                            height: 1.6, // spacing بين السطور 👌
+                            height: 1.6,
                           ),
                         ),
                       ),
