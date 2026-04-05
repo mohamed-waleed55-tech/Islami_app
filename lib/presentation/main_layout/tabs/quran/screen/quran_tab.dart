@@ -92,9 +92,9 @@ Widget buildSurasList(
     shrinkWrap: true,
     physics: NeverScrollableScrollPhysics(),
     itemCount: filteredSuras.length,
-    // 🔥 هنا
+    
     itemBuilder: (_, index) => SuraListItem(
-      sura: filteredSuras[index], // 🔥 هنا
+      sura: filteredSuras[index], 
       mostRecentSurasKey: mostRecentKey,
     ),
     separatorBuilder: (_, _) => Divider(
