@@ -111,6 +111,7 @@ class _HadithCardWidgetState extends State<HadithCardWidget> {
   }
 
   void loadHadithFile() async {
+    await Future.delayed(const Duration(milliseconds: 500));
     String content = await rootBundle.loadString(
       "lib/core/assets/files/hadith/h${widget.index + 1}.txt",
     );

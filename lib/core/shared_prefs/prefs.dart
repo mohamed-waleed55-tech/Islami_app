@@ -28,13 +28,12 @@ class PrefsManager {
     List<String> surasIndexes = prefs.getStringList(listName) ?? [];
 
     List<SuraDM> mostSurasList = [];
-    List<SuraDM> mostSuras = [];
 
     for (int i = 0; i < surasIndexes.length; i++) {
       int index = int.parse(surasIndexes[i]);
       mostSurasList.add(suraList[index]);
     }
 
-    return mostSuras;//mostSurasList;
+    return mostSurasList;//mostSurasList;
   }
 }
