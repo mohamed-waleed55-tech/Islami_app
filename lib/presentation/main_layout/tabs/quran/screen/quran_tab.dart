@@ -5,6 +5,8 @@ import 'package:islam/core/constant_data/constant_manager.dart';
 import 'package:islam/presentation/main_layout/tabs/quran/screen/most_recent_suras.dart';
 import 'package:islam/presentation/main_layout/tabs/quran/widgets/sura_list_item.dart';
 
+import '../../../../../core/constant_data/data_model.dart';
+
 class QuranTab extends StatefulWidget {
   const QuranTab({super.key});
 
@@ -13,7 +15,31 @@ class QuranTab extends StatefulWidget {
 }
 
 class _QuranTabState extends State<QuranTab> {
-  GlobalKey<MostRecentSurasState>mostRecentSurasState=GlobalKey<MostRecentSurasState>();
+  List<SuraDM> filteredSuras = [];
+  TextEditingController searchController = TextEditingController();
+
+  GlobalKey<MostRecentSurasState> mostRecentSurasState =
+      GlobalKey<MostRecentSurasState>();
+
+  @override
+  void initState() {
+    super.initState();
+    filteredSuras = suraList;
+  }
+
+  void searchSura(String query) {
+    if (query.isEmpty) {
+      filteredSuras = suraList;
+    } else {
+      filteredSuras = suraList.where((sura) {
+        return sura.suraArName.contains(query) ||
+            sura.suraEnName.toLowerCase().contains(query.toLowerCase());
+      }).toList();
+    }
+
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,17 +64,17 @@ class _QuranTabState extends State<QuranTab> {
                   alignment: Alignment.bottomCenter,
                   child: Image.asset(ImagesManager.quran_header),
                 ),
-                buildTextField(),
+                buildTextField(searchSura, searchController),
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 10),
                   child: buildTitle("Most Recently"),
                 ),
                 SizedBox(
-                    height: 150,
-                    child: MostRecentSuras(key: mostRecentSurasState,)
+                  height: 150,
+                  child: MostRecentSuras(key: mostRecentSurasState),
                 ),
                 buildTitle("Suras List"),
-                buildSurasList(mostRecentSurasState),
+                buildSurasList(mostRecentSurasState, filteredSuras),
               ],
             ),
           ),
@@ -58,14 +84,18 @@ class _QuranTabState extends State<QuranTab> {
   }
 }
 
-
-
-Widget buildSurasList(GlobalKey<MostRecentSurasState> mostRecentKey) {
+Widget buildSurasList(
+  GlobalKey<MostRecentSurasState> mostRecentKey,
+  List<SuraDM> filteredSuras,
+) {
   return ListView.separated(
     shrinkWrap: true,
     physics: NeverScrollableScrollPhysics(),
-    itemCount: suraList.length,
-    itemBuilder: (_, index) =>SuraListItem(sura: suraList[index],mostRecentSurasKey:mostRecentKey ,
+    itemCount: filteredSuras.length,
+    // 🔥 هنا
+    itemBuilder: (_, index) => SuraListItem(
+      sura: filteredSuras[index], // 🔥 هنا
+      mostRecentSurasKey: mostRecentKey,
     ),
     separatorBuilder: (_, _) => Divider(
       endIndent: 64,
@@ -77,10 +107,17 @@ Widget buildSurasList(GlobalKey<MostRecentSurasState> mostRecentKey) {
   );
 }
 
-Widget buildTextField() {
+Widget buildTextField(
+  Function(String) onChanged,
+  TextEditingController searchController,
+) {
   return SizedBox(
     height: 55,
     child: TextField(
+
+      controller: searchController,
+      onChanged: onChanged,
+
       cursorColor: ColorsManager.offWhite,
       style: const TextStyle(
         fontSize: 18,
@@ -90,6 +127,10 @@ Widget buildTextField() {
 
       decoration: InputDecoration(
         labelText: "Sura Name",
+        contentPadding: EdgeInsets.symmetric(
+          vertical: 20,
+          horizontal: 12,
+        ),
 
         labelStyle: const TextStyle(
           fontSize: 16,
@@ -104,14 +145,18 @@ Widget buildTextField() {
             color: ColorsManager.gold,
           ),
         ),
+        suffixIcon: IconButton(
+          icon: Icon(Icons.clear, color: ColorsManager.gold),
+          onPressed: () {
+            searchController.clear();
+            onChanged("");
+          },
+        ),
 
         filled: true,
         fillColor: ColorsManager.black.withValues(alpha: 0.3),
 
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 12,
-          vertical: 10,
-        ),
+
 
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
