@@ -63,12 +63,12 @@ class _TasbihTabState extends State<TasbihTab>
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        iconTheme: IconThemeData(color: ColorsManager.offWhite, size: 30),
+        iconTheme: IconThemeData(color: ColorsManager.gold, size: 30),
         centerTitle: true,
         title: const Text(
           "الأذكار",
           style:  TextStyle(
-            color: ColorsManager.offWhite,
+            color: ColorsManager.gold,
             fontSize: 24,
             fontWeight: FontWeight.bold,
           ),
@@ -79,6 +79,7 @@ class _TasbihTabState extends State<TasbihTab>
           children: [
             DrawerHeader(
               decoration: const BoxDecoration(
+                color: ColorsManager.gold,
                 image: DecorationImage(
                   image: AssetImage(ImagesManager.sibha_bg),
                   fit: BoxFit.cover,
@@ -89,7 +90,7 @@ class _TasbihTabState extends State<TasbihTab>
                   "الأذكار",
                   style: TextStyle(
                     fontSize: 34,
-                    color: Colors.white,
+                    color: ColorsManager.gold,
                     fontWeight: FontWeight.bold,
                     fontFamily: "Amiri",
                   ),
@@ -98,21 +99,24 @@ class _TasbihTabState extends State<TasbihTab>
             ),
 
             Expanded(
-              child: ListView.builder(
-                itemCount: azkarList.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: buildZkrItem(azkarList[index]),
+              child: Container(
+                color: ColorsManager.gold,
+                child: ListView.builder(
+                  itemCount: azkarList.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: buildZkrItem(azkarList[index]),
 
-                    onTap: () {
-                      setState(() {
-                        currentZkr = azkarList[index].zekr;
-                        count = 0;
-                      });
-                      Navigator.pop(context);
-                    },
-                  );
-                },
+                      onTap: () {
+                        setState(() {
+                          currentZkr = azkarList[index].zekr;
+                          count = 0;
+                        });
+                        Navigator.pop(context);
+                      },
+                    );
+                  },
+                ),
               ),
             ),
           ],
@@ -123,12 +127,12 @@ class _TasbihTabState extends State<TasbihTab>
         alignment: Alignment.center,
         padding: EdgeInsets.all(6),
         width: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(ImagesManager.sibha_bg),
-            fit: BoxFit.cover,
-          ),
-        ),
+        // decoration: BoxDecoration(
+        //   image: DecorationImage(
+        //     image: AssetImage(ImagesManager.sibha_bg),
+        //     fit: BoxFit.cover,
+        //   ),
+        // ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -137,7 +141,7 @@ class _TasbihTabState extends State<TasbihTab>
               "سَبِّحِ اسْمَ رَبِّكَ الأعلى ",
               style: TextStyle(
                 fontSize: 34,
-                color: ColorsManager.offWhite,
+                color: ColorsManager.gold,
                 fontFamily: "Amiri",
               ),
               textAlign: TextAlign.center,
@@ -149,7 +153,7 @@ class _TasbihTabState extends State<TasbihTab>
               currentZkr,
               style: TextStyle(
                 fontSize: 28,
-                color: ColorsManager.offWhite,
+                color: ColorsManager.gold,
                 fontFamily: "Amiri",
               ),
               textAlign: TextAlign.center,
