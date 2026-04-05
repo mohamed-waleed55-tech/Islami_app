@@ -26,7 +26,7 @@ class _HadithTabState extends State<HadithTab> {
            SizedBox(
             height: 120,
             child: Image.asset(
-              ImagesManager.mohamed,
+              ImagesManager.quran_header,
               colorBlendMode: BlendMode.srcIn,
               color: ColorsManager.gold,
               fit: BoxFit.contain,

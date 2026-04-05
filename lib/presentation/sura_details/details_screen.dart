@@ -25,6 +25,13 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
     loadSura();
   }
 
+
+  @override
+  void dispose() {
+    arguments.recentSurasKey?.currentState?.getRecentSuras();
+    super.dispose();
+  }
+
   Future<void> loadSura() async {
     String content = await rootBundle.loadString(
       "lib/core/assets/files/suras/${arguments.suraNum}.txt",

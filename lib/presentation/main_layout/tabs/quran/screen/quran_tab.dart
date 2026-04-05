@@ -2,24 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:islam/core/assets/colors/colors.dart';
 import 'package:islam/core/assets/images/images_manager.dart';
 import 'package:islam/core/constant_data/constant_manager.dart';
-import 'package:islam/presentation/main_layout/tabs/quran/widgets/most_recent_item.dart';
+import 'package:islam/presentation/main_layout/tabs/quran/screen/most_recent_suras.dart';
 import 'package:islam/presentation/main_layout/tabs/quran/widgets/sura_list_item.dart';
 
-class QuranTab extends StatelessWidget {
+class QuranTab extends StatefulWidget {
   const QuranTab({super.key});
 
+  @override
+  State<QuranTab> createState() => _QuranTabState();
+}
+
+class _QuranTabState extends State<QuranTab> {
+  GlobalKey<MostRecentSurasState>mostRecentSurasState=GlobalKey<MostRecentSurasState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        color: ColorsManager.black,
         width: double.infinity,
         height: double.infinity,
-        decoration:const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(ImagesManager.quran_bg),
-            fit: BoxFit.cover,
-          ),
-        ),
+        // decoration:const BoxDecoration(
+        //   image: DecorationImage(
+        //     image: AssetImage(ImagesManager.quran_bg),
+        //     fit: BoxFit.cover,
+        //   ),
+        // ),
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -36,9 +43,12 @@ class QuranTab extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 10),
                   child: buildTitle("Most Recently"),
                 ),
-                buildRecentSura(),
+                SizedBox(
+                    height: 150,
+                    child: MostRecentSuras(key: mostRecentSurasState,)
+                ),
                 buildTitle("Suras List"),
-                buildSurasList(),
+                buildSurasList(mostRecentSurasState),
               ],
             ),
           ),
@@ -48,26 +58,15 @@ class QuranTab extends StatelessWidget {
   }
 }
 
-Widget buildRecentSura() {
-  return SizedBox(
-    height: 150,
-    child: ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: 6,
-      itemBuilder: (_, index) => Padding(
-        padding: const EdgeInsets.only(right: 10),
-        child: const MostRecentItem(),
-      ),
-    ),
-  );
-}
 
-Widget buildSurasList() {
+
+Widget buildSurasList(GlobalKey<MostRecentSurasState> mostRecentKey) {
   return ListView.separated(
     shrinkWrap: true,
     physics: NeverScrollableScrollPhysics(),
     itemCount: suraList.length,
-    itemBuilder: (_, index) =>SuraListItem(sura: suraList[index]),
+    itemBuilder: (_, index) =>SuraListItem(sura: suraList[index],mostRecentSurasKey:mostRecentKey ,
+    ),
     separatorBuilder: (_, _) => Divider(
       endIndent: 64,
       indent: 64,

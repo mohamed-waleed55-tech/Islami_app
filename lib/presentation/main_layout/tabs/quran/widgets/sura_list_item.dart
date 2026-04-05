@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:islam/core/constant_data/data_model.dart';
 import 'package:islam/core/navigation/routes.dart';
+import 'package:islam/core/shared_prefs/prefs.dart';
+import 'package:islam/presentation/main_layout/tabs/quran/screen/most_recent_suras.dart';
 import '../../../../../core/assets/colors/colors.dart';
 import '../../../../../core/assets/images/images_manager.dart';
 
 class SuraListItem extends StatelessWidget {
-   const SuraListItem({super.key,required this.sura});
+  const SuraListItem({super.key,required this.sura,required this.mostRecentSurasKey});
  final SuraDM sura;
+  final GlobalKey<MostRecentSurasState>? mostRecentSurasKey;
 
-  @override
+
+   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Navigator.pushNamed(context, AppRoutes.quranDetails,arguments: sura);
+        PrefsManager.addSuraIndex((sura.suraNum-1));
+        final updatedSura = sura.copyWith(
+          recentSurasKey: mostRecentSurasKey,
+        );
+
+
+        Navigator.pushNamed(context, AppRoutes.quranDetails,arguments: updatedSura);
       },
       child: SizedBox(
         height: 64,
