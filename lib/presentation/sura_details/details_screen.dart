@@ -45,6 +45,8 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
     }
 
     isLoading = false;
+    await Future.delayed(const Duration(milliseconds: 500)); // delay
+
     setState(() {});
   }
 

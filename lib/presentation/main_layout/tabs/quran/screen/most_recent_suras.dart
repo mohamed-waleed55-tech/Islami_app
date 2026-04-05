@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islam/core/navigation/routes.dart';
 import 'package:islam/core/shared_prefs/prefs.dart';
 
 import '../../../../../core/assets/colors/colors.dart';
@@ -60,61 +61,66 @@ class MostRecentSurasState extends State<MostRecentSuras> {
   }
 
   Widget buildRecentSuraItem({required SuraDM sura}) {
-    return Container(
-      height: 150,
-      width: 280,
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: ColorsManager.gold,
-        borderRadius: BorderRadius.circular(20),
-      ),
-
-      child: SizedBox(
+    return InkWell(
+      onTap: (){
+        Navigator.pushNamed(context, AppRoutes.quranDetails,arguments: sura);
+      },
+      child: Container(
+        height: 150,
         width: 280,
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    sura.suraEnName,
-                    style: TextStyle(
-                      color: ColorsManager.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "Amiri",
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: ColorsManager.gold,
+          borderRadius: BorderRadius.circular(20),
+        ),
 
-                    ),
-                  ),
-                  Text(
-                    sura.suraArName,
-                    style: TextStyle(
-                      color: ColorsManager.black,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: "Amiri",
+        child: SizedBox(
+          width: 280,
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      sura.suraEnName,
+                      style: TextStyle(
+                        color: ColorsManager.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Amiri",
 
+                      ),
                     ),
-                  ),
-                  Text(
-                    "${sura.verses} Verses",
-                    style: TextStyle(
-                      color: ColorsManager.black,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "Amiri",
+                    Text(
+                      sura.suraArName,
+                      style: TextStyle(
+                        color: ColorsManager.black,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: "Amiri",
+
+                      ),
                     ),
-                  ),
-                ],
+                    Text(
+                      "${sura.verses} Verses",
+                      style: TextStyle(
+                        color: ColorsManager.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Amiri",
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
 
-            Expanded(
-              child: Image.asset(ImagesManager.most_recent_sura, height: 120),
-            ),
-          ],
+              Expanded(
+                child: Image.asset(ImagesManager.most_recent_sura, height: 120),
+              ),
+            ],
+          ),
         ),
       ),
     );
